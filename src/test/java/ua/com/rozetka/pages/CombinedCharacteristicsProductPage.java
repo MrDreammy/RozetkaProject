@@ -18,9 +18,7 @@ public class CombinedCharacteristicsProductPage {
     @FindBy(xpath = "//img[@title='Ноутбуки с SSD']")
     private WebElement notebookSsd;
 
-    public WebElement getNotebookSsdPage (WebElement){
+    public void getNotebookSsdPage (){
         notebookSsd.click();
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfAllElements());
-        return new ProductPage;
     }
 }

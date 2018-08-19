@@ -22,16 +22,15 @@ public class ProductPage {
     @FindBy (xpath = "//div[@class='btn-link-to-compare']")
     private WebElement comparePageButton;
 
-    public void addProductInCombineList(List<WebElement>, String) {
+    public void addProductInCombineList() {
         notebookSsdList.get(0).click();
         notebookSsdList.get(1).click();
             }
 
-    public WebElement getComparePage(WebElement){
+    public void goToComparePage(){
         checkproductLink.click();
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfAllElements(comparePageButton));
         comparePageButton.click();
-        return new ComparePage;
     }
 }
 

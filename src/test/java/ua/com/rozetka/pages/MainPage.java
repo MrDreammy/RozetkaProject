@@ -31,21 +31,19 @@ public class MainPage {
     private List<WebElement> mainPageSecondMenuList;
 
 
-    public List<WebElement> getProductListLinks(WebElement) {
+    public void getProductListLinks() {
         actions.moveToElement(navigationLinkNotebook);
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOfAllElements(mainPageSecondMenuList));
-        return mainPageSecondMenuList;
     }
 
 
-    public WebElement clickOnProductTypeInSecondMenu(List<WebElement>, String) {
+    public void clickOnProductTypeInSecondMenu() {
         for (WebElement iterator : mainPageSecondMenuList) {
             if (iterator.getText().contains(productType)) {
                 iterator.click();
                 break;
             }
         }
-        return new CombinedCharacteristicsProductPage;
 
     }
 }

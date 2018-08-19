@@ -1,11 +1,12 @@
 package ua.com.rozetka.tests;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import ua.com.rozetka.pages.CombinedCharacteristicsProductPage;
 import ua.com.rozetka.pages.MainPage;
+import ua.com.rozetka.pages.ProductPage;
+import ua.com.rozetka.pages.compare.ComparePage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,11 +18,12 @@ import java.util.logging.Logger;
 public class ComparePageTest {
     private static WebDriver driver = new ChromeDriver();
     private static Properties config = new Properties();
-    private MainPage mainPage = new MainPage();
     static String siteAddress = config.getProperty("site.address.rozetka");
     public String productType;
-    private static Logger logger = Logger.getLogger(ComparePageTest.class);
-
+MainPage mainPage = new MainPage();
+ProductPage productPage = new ProductPage();
+ComparePage comparePage = new ComparePage();
+CombinedCharacteristicsProductPage combinedCharProductPage = new CombinedCharacteristicsProductPage();
     @BeforeClass
     public static void setUp() throws IOException {
         InputStream file = new FileInputStream("src/test/java/ua/com/rozetka/config/сonfig.properties");
@@ -37,6 +39,16 @@ public class ComparePageTest {
     }
 
     @Test
+       public void comparePageTest(){
+        mainPage.getProductListLinks();
+        mainPage.clickOnProductTypeInSecondMenu();
+        combinedCharProductPage.getNotebookSsdPage();
+        productPage.addProductInCombineList();
+        productPage.goToComparePage();
+        int countDifference = comparePage.getDiferenceOfTwoColumns();
+        int rozetkaDifference = comparePage.getOnlyDifference();
+        Assert.assertTrue("Разные данные на странице с характеристикам и на странице отличий",countDifference==rozetkaDifference);
+    }
 
 
     @After
